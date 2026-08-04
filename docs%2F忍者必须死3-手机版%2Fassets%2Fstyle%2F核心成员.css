@@ -1,0 +1,249 @@
+/* ===== 核心成员页样式 ===== */
+.section-members {
+    position: relative;
+    min-height: 100vh;
+    padding: 160px 80px 140px;
+    background:
+        linear-gradient(180deg, rgba(10, 10, 15, 0.94) 0%, rgba(25, 8, 10, 0.96) 50%, rgba(10, 10, 15, 0.94) 100%),
+        url("../images/6.jpeg") center / cover no-repeat fixed;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* 半透明遮罩 + 氛围光晕 */
+.section-mask {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(200, 22, 29, 0.10) 0%, transparent 45%),
+        radial-gradient(circle at 85% 75%, rgba(240, 199, 94, 0.08) 0%, transparent 45%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.section-members .section-inner {
+    position: relative;
+    z-index: 2;
+}
+
+/* ===== 章节标题（镂空大数字 01） ===== */
+.section-members .chapter-head-v2 {
+    margin-bottom: 28px;
+    align-items: center;
+}
+
+.section-members .chapter-num-v2 {
+    font-size: 96px;
+    line-height: 1;
+    -webkit-text-stroke: 1.5px #c8161d;
+    text-shadow: 0 0 30px rgba(200, 22, 29, 0.25);
+}
+
+.section-members .chapter-label-v2 {
+    font-size: 13px;
+    letter-spacing: 8px;
+    color: rgba(240, 199, 94, 0.7);
+}
+
+/* ===== 大字主标题 ===== */
+.members-title {
+    font-size: 84px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 14px;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    text-shadow: 0 6px 40px rgba(0, 0, 0, 0.7);
+    position: relative;
+}
+
+.members-title::after {
+    content: "";
+    display: block;
+    width: 96px;
+    height: 3px;
+    background: linear-gradient(90deg, #c8161d, #f0c75e);
+    margin-top: 28px;
+    box-shadow: 0 0 14px rgba(200, 22, 29, 0.6);
+}
+
+/* ===== 介绍语 ===== */
+.member-intro {
+    color: #aaa;
+    font-size: 18px;
+    max-width: 680px;
+    margin-bottom: 90px;
+    letter-spacing: 3px;
+    line-height: 1.9;
+}
+
+/* ===== 成员列表 ===== */
+.members-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+}
+
+/* ===== 成员卡片 - 磨砂玻璃质感 ===== */
+.member-card {
+    position: relative;
+    background: rgba(20, 20, 28, 0.45);
+    backdrop-filter: blur(24px) saturate(140%);
+    -webkit-backdrop-filter: blur(24px) saturate(140%);
+    border: 1px solid rgba(240, 199, 94, 0.2);
+    border-radius: 4px;
+    padding: 56px 36px 48px;
+    text-align: center;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+}
+
+/* 卡片顶部金线 */
+.member-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, #f0c75e 50%, transparent 100%);
+    opacity: 0.5;
+    transition: opacity 0.5s ease;
+}
+
+/* 卡片右上角镂空编号 */
+.member-card::after {
+    content: attr(data-num);
+    position: absolute;
+    top: 24px;
+    right: 28px;
+    font-size: 64px;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(240, 199, 94, 0.15);
+    line-height: 1;
+    pointer-events: none;
+    transition: -webkit-text-stroke-color 0.5s ease;
+}
+
+.member-card:hover {
+    transform: translateY(-14px);
+    border-color: rgba(240, 199, 94, 0.55);
+    background: rgba(28, 20, 22, 0.6);
+    box-shadow:
+        0 40px 80px rgba(0, 0, 0, 0.6),
+        0 0 50px rgba(200, 22, 29, 0.18);
+}
+
+.member-card:hover::before { opacity: 1; }
+
+.member-card:hover::after {
+    -webkit-text-stroke-color: rgba(200, 22, 29, 0.35);
+}
+
+/* ===== 头像 - 金色渐变相框 ===== */
+.member-avatar {
+    position: relative;
+    width: 128px;
+    height: 128px;
+    margin: 0 auto 32px;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(135deg, #f0c75e 0%, #c8161d 50%, #f0c75e 100%);
+    box-shadow:
+        0 0 30px rgba(240, 199, 94, 0.25),
+        0 10px 24px rgba(0, 0, 0, 0.5);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.member-card:hover .member-avatar {
+    box-shadow:
+        0 0 55px rgba(240, 199, 94, 0.45),
+        0 14px 32px rgba(200, 22, 29, 0.35);
+    transform: scale(1.06) rotate(-2deg);
+}
+
+.member-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #0a0a0f;
+}
+
+/* ===== 成员信息 ===== */
+.member-card h3 {
+    color: #f0c75e;
+    font-size: 22px;
+    margin-bottom: 14px;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    line-height: 1.4;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.member-tag {
+    display: inline-block;
+    color: #c8161d;
+    font-size: 12px;
+    letter-spacing: 4px;
+    margin-bottom: 22px;
+    font-weight: bold;
+    padding: 5px 14px;
+    border: 1px solid rgba(200, 22, 29, 0.4);
+    background: rgba(200, 22, 29, 0.08);
+}
+
+.member-desc {
+    color: #999;
+    font-size: 14px;
+    line-height: 1.9;
+    letter-spacing: 0.5px;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 1024px) {
+    .members-list { grid-template-columns: repeat(2, 1fr); }
+    .members-title { font-size: 60px; letter-spacing: 8px; }
+    .section-members .chapter-num-v2 { font-size: 72px; }
+}
+
+@media (max-width: 768px) {
+    .section-members { padding: 120px 24px 90px; }
+    .members-list { grid-template-columns: 1fr; gap: 24px; }
+    .members-title { font-size: 42px; letter-spacing: 6px; }
+    .section-members .chapter-num-v2 { font-size: 56px; }
+    .member-intro { font-size: 15px; margin-bottom: 56px; }
+    .member-card { padding: 40px 24px 36px; }
+    .member-avatar { width: 96px; height: 96px; margin-bottom: 24px; }
+    .member-card::after { font-size: 48px; top: 18px; right: 20px; }
+}
+
+/* ===== 手机端适配（补充） ===== */
+@media screen and (max-width: 768px) {
+    /* 背景图改为 scroll（iOS 兼容） */
+    .section-members { background-attachment: scroll; }
+
+    /* 成员头像保持 90×90px */
+    .member-avatar { width: 90px; height: 90px; margin-bottom: 22px; }
+
+    /* 卡片 :hover 改为 :active 触摸反馈 */
+    .member-card:active {
+        transform: translateY(-6px);
+        border-color: rgba(240, 199, 94, 0.55);
+        background: rgba(28, 20, 22, 0.6);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(200, 22, 29, 0.18);
+    }
+    .member-card:active::before { opacity: 1; }
+    .member-card:active::after { -webkit-text-stroke-color: rgba(200, 22, 29, 0.35); }
+    .member-card:active .member-avatar {
+        box-shadow: 0 0 40px rgba(240, 199, 94, 0.4), 0 10px 24px rgba(200, 22, 29, 0.3);
+        transform: scale(1.04);
+    }
+
+    /* 卡片字号微调 */
+    .member-card h3 { font-size: 19px; margin-bottom: 12px; }
+    .member-tag { font-size: 11px; letter-spacing: 3px; margin-bottom: 18px; }
+    .member-desc { font-size: 13px; line-height: 1.8; }
+}
