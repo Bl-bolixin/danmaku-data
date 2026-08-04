@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快乐是种天赋 - 小游戏</title>
+    <link rel="stylesheet" href="../assets/style/common.css">
+    <link rel="stylesheet" href="../assets/style/小游戏.css">
+</head>
+<body>
+    <!-- 页面加载动画 -->
+    <div class="loader" id="loader">
+        <div class="loader-ink">
+            <div class="ink-circle"></div>
+            <span class="loader-char">忍</span>
+        </div>
+        <p class="loader-text">快乐是种天赋</p>
+    </div>
+    <!-- 顶部滚动进度条 -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <!-- 自定义光标 -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+    <!-- 粒子背景 -->
+    <canvas class="particles" id="particles"></canvas>
+
+    <!-- 顶部导航 -->
+    <div class="nav">
+        <div class="nav-logo">
+            <span class="logo-mark">忍</span>
+            <span class="logo-text">快乐是种天赋</span>
+        </div>
+        <div class="nav-links">
+            <a href="首页.html">首页</a>
+            <a href="核心成员.html">核心成员</a>
+            <a href="种棉花.html">种棉花</a>
+            <a href="小游戏.html" class="active">小游戏</a>
+            <a href="QQ群精华.html">弹幕墙</a>
+            <a href="招募加入.html">招募加入</a>
+        </div>
+    </div>
+
+    <!-- 第一部分：抽卡模拟器 -->
+    <div class="section section-gacha" id="gacha">
+        <div class="section-inner">
+            <div class="chapter-head-v2">
+                <span class="chapter-num-v2">01</span>
+                <span class="chapter-label-v2">GACHA · 抽卡模拟器</span>
+            </div>
+            <p class="chapter-sub">概率公开 · 保底透明 · 一抽入魂</p>
+
+            <!-- 抽卡区域 -->
+            <div class="gacha-area animate-box">
+                <!-- 抽卡结果全屏展示层 -->
+                <div class="gacha-result-overlay" id="gachaResultOverlay">
+                    <div class="gacha-result-bg"></div>
+                    <div class="gacha-result-content">
+                        <div class="gacha-result-grid" id="gachaResultGrid"></div>
+                        <div class="gacha-result-hint" id="gachaResultHint" style="display:none;">点击任意位置关闭</div>
+                    </div>
+                </div>
+
+                <!-- 抽卡券提示条 -->
+                <div class="gacha-tickets-bar" id="gachaTicketsBar">
+                    <span class="tickets-text">抽卡券：<span class="tickets-num" id="gachaTicketsNum">0</span></span>
+                    <a href="种棉花.html" class="tickets-link">去种棉花获取 →</a>
+                </div>
+
+                <!-- 两列布局：左抽卡 + 右定向选择 -->
+                <div class="gacha-layout">
+                    <div class="gacha-main">
+                        <div class="gacha-card-wrap">
+                            <div class="gacha-card" id="gachaCard">
+                                <!-- 角色图片显示区 -->
+                                <div class="gacha-card-imgwrap" id="gachaImgWrap">
+                                    <img class="gacha-card-img" id="gachaImg" alt="" src="">
+                                    <div class="gacha-card-imgmask"></div>
+                                    <div class="gacha-card-placeholder" id="gachaPlaceholder">？</div>
+                                </div>
+                                <!-- 稀有度 + 名字 + 奖励 -->
+                                <div class="gacha-card-rarity" id="gachaRarity"></div>
+                                <div class="gacha-card-name" id="gachaName">点击下方按钮开始抽卡</div>
+                                <div class="gacha-card-reward" id="gachaReward"></div>
+                                <!-- 隐藏款特殊角标 -->
+                                <div class="gacha-card-hidden-tag" id="gachaHiddenTag">隐藏款</div>
+                            </div>
+                        </div>
+
+                        <div class="gacha-buttons">
+                            <button class="gacha-btn" id="btnSingle">单抽</button>
+                            <button class="gacha-btn" id="btnTen">十连抽</button>
+                        </div>
+
+                        <!-- 已抽次数与保底进度条 -->
+                        <div class="gacha-stats">
+                            <div class="gacha-count">已抽次数：<span id="gachaCount">0</span></div>
+                            <div class="gacha-pity">
+                                <div class="pity-label">保底进度：<span id="pityNum">0</span>/60 <span class="pity-tip-soft">（50抽后概率递增）</span></div>
+                                <div class="pity-bar-bg">
+                                    <div class="pity-bar-fill" id="pityBar"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 资源总览 -->
+                        <div class="gacha-inventory">
+                            <h4 class="inventory-title">资源总览</h4>
+                            <div class="inventory-list">
+                                <div class="inv-item"><span class="inv-icon ur-text">UR</span><span class="inv-label">UR牢忍者</span><span class="inv-num" id="invUR">0</span></div>
+                                <div class="inv-item"><span class="inv-icon ssr-text">SSR</span><span class="inv-label">SSR忍者</span><span class="inv-num" id="invSSR">0</span></div>
+                                <div class="inv-item"><span class="inv-icon sr-text">SR</span><span class="inv-label">SR碎片</span><span class="inv-num" id="invSR">0</span></div>
+                                <div class="inv-item"><span class="inv-icon fragment">片</span><span class="inv-label">忍者碎片</span><span class="inv-num" id="invFrag">0</span></div>
+                                <div class="inv-item"><span class="inv-icon jade">玉</span><span class="inv-label">勾玉</span><span class="inv-num" id="invJade">0</span></div>
+                                <div class="inv-item"><span class="inv-icon coin">币</span><span class="inv-label">金币</span><span class="inv-num" id="invCoin">0</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右侧：定向选择面板 -->
+                    <div class="gacha-sidebar">
+                        <div class="target-panel">
+                            <h4 class="target-title">定向选择</h4>
+                            <p class="target-desc">SSR定向50%命中 · UR定向20%命中 · 歪了出同池其他</p>
+                            <!-- 定向角色大图展示 -->
+                            <div class="target-display" id="targetDisplay">
+                                <div class="target-placeholder">未选择<br>点击下方角色</div>
+                            </div>
+                            <!-- 标签切换：SSR / 牢 -->
+                            <div class="target-tabs">
+                                <button class="target-tab active" data-pool="SSR">SSR忍者</button>
+                                <button class="target-tab" data-pool="UR">牢忍者(UR)</button>
+                            </div>
+                            <!-- 角色网格（JS生成） -->
+                            <div class="target-grid" id="targetGrid"></div>
+                            <button class="target-clear-btn" id="targetClear">取消定向</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 抽卡历史记录 -->
+            <div class="gacha-history">
+                <h3 class="history-title">抽卡历史</h3>
+                <div class="history-list" id="historyList">
+                    <div class="history-empty">暂无抽卡记录</div>
+                </div>
+            </div>
+
+            <!-- 概率说明 -->
+            <div class="gacha-info">
+                <h4>概率说明</h4>
+                <ul>
+                    <li>UR（牢）0.2% · SSR 1.2% · SR 10% · R 88.6%</li>
+                    <li>软保底：50抽后每抽SSR概率+4%，硬保底：60抽必出SSR/UR</li>
+                    <li>定向SSR：出SSR时50%命中，50%歪其他</li>
+                    <li>定向UR：出UR时20%命中，80%歪其他</li>
+                    <li>无定向：出SSR时5%概率升级为UR</li>
+                    <li>抽卡券：去种棉花页面收获棉花获得</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer">
+        <div class="footer-content">
+            <p class="footer-name">快乐是种天赋</p>
+            <p class="footer-slogan">来家族免费种棉花</p>
+            <p class="footer-info">本页面为玩家自制内容 · 仅供家族招新使用 · 与官方无关</p>
+        </div>
+    </div>
+
+    <!-- 抽卡音频 -->
+    <audio id="audioGacha" src="../assets/audio/dg.mp3" preload="auto"></audio>
+    <audio id="audioGold" src="../assets/audio/j.mp3" preload="auto"></audio>
+
+    <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/小游戏.js"></script>
+</body>
+</html>
