@@ -1,1 +1,11 @@
-[]
+{
+    "time":  1785839604977,
+    "color":  "gold",
+    "id":  "test_001",
+    "text":  "GitHub弹幕测试",
+    "avatar":  {
+                   "pool":  "SSR",
+                   "img":  "小黑.WEBP",
+                   "name":  "小黑"
+               }
+}
