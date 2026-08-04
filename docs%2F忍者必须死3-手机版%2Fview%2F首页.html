@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快乐是种天赋 | 忍者必须死3 家族</title>
+    <link rel="stylesheet" href="../assets/style/common.css">
+    <link rel="stylesheet" href="../assets/style/首页.css">
+</head>
+<body>
+    <!-- 页面加载动画 -->
+    <div class="loader" id="loader">
+        <div class="loader-ink">
+            <div class="ink-circle"></div>
+            <span class="loader-char">忍</span>
+        </div>
+        <p class="loader-text">快乐是种天赋</p>
+    </div>
+
+    <!-- 顶部滚动进度条 -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- 粒子背景 -->
+    <canvas class="particles" id="particles"></canvas>
+
+    <!-- 顶部导航 -->
+    <div class="nav">
+        <div class="nav-logo">
+            <span class="logo-mark">忍</span>
+            <span class="logo-text">快乐是种天赋</span>
+        </div>
+        <div class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="首页.html" class="active">首页</a>
+            <a href="核心成员.html">核心成员</a>
+            <a href="种棉花.html">种棉花</a>
+            <a href="小游戏.html">小游戏</a>
+            <a href="QQ群精华.html">弹幕墙</a>
+            <a href="招募加入.html">招募加入</a>
+        </div>
+    </div>
+
+    <!-- 序章：Hero -->
+    <section class="hero" id="hero" data-chapter="0">
+        <video class="hero-video" src="https://www-res.pandadastudio.com/pc/media/focus_kv_v7.mp4" autoplay muted loop playsinline></video>
+        <div class="hero-mask"></div>
+        <!-- 装饰线 -->
+        <div class="hero-lines">
+            <div class="line-deco line-top"></div>
+            <div class="line-deco line-bottom"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-tag">
+                <span class="tag-dot"></span>
+                <span class="tag-text">NINJA MUST DIE 3 · 家族招募中</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="title-char" style="--i:0">快</span><span class="title-char" style="--i:1">乐</span><span class="title-char" style="--i:2">是</span><span class="title-char" style="--i:3">种</span><span class="title-char" style="--i:4">天</span><span class="title-char" style="--i:5">赋</span>
+            </h1>
+            <p class="hero-subtitle" id="typedText"></p>
+            <div class="hero-actions">
+                <a href="招募加入.html" class="btn-primary">
+                    <span>加入家族</span>
+                    <svg viewBox="0 0 24 24" width="16" height="16"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+                </a>
+                <a href="#data" class="btn-ghost">了解家族</a>
+            </div>
+        </div>
+        <div class="hero-scroll-hint">
+            <span>SCROLL</span>
+            <div class="scroll-line"></div>
+        </div>
+        <!-- 角标 -->
+        <div class="hero-corner">
+            <span class="corner-text">EST. 忍界黎明</span>
+            <span class="corner-line"></span>
+        </div>
+    </section>
+
+    <!-- 第一章：家族数据 -->
+    <section class="chapter chapter-data" id="data" data-chapter="1">
+        <div class="chapter-head">
+            <span class="chapter-num">01</span>
+            <span class="chapter-label">家族档案</span>
+        </div>
+        <div class="data-grid">
+            <div class="data-item" data-target="10">
+                <div class="data-num"><span class="num-count">0</span></div>
+                <div class="data-bar"><div class="bar-fill" style="--w:10%"></div></div>
+                <div class="data-label">家族等级</div>
+            </div>
+            <div class="data-item" data-target="99">
+                <div class="data-num"><span class="num-count">0</span></div>
+                <div class="data-bar"><div class="bar-fill" style="--w:99%"></div></div>
+                <div class="data-label">成员数量</div>
+            </div>
+            <div class="data-item" data-target="65" data-suffix="%">
+                <div class="data-num"><span class="num-count">0</span><span class="num-suffix"></span></div>
+                <div class="data-bar"><div class="bar-fill" style="--w:65%"></div></div>
+                <div class="data-label">活跃度</div>
+            </div>
+        </div>
+        <div class="data-desc">
+            <p>"快乐是种天赋"家族成立于忍界黎明时期，是一群热爱《忍者必须死3》的玩家共同建立的温暖家园。以快乐游戏、共同成长为宗旨，致力于为每一位成员提供友爱、活跃、有温度的家族氛围。</p>
+        </div>
+    </section>
+
+    <!-- 第二章：家族宣言 -->
+    <section class="chapter chapter-manifesto" id="manifesto" data-chapter="2">
+        <div class="manifesto-bg-text" id="bgText">NINJA</div>
+        <div class="manifesto-content">
+            <div class="manifesto-line"><span class="ml-num">一</span><span class="ml-text">以忍道为乐</span></div>
+            <div class="manifesto-line"><span class="ml-num">二</span><span class="ml-text">以天赋为名</span></div>
+            <div class="manifesto-line manifesto-final"><span class="ml-text">快乐是种天赋</span></div>
+        </div>
+        <div class="manifesto-seal">忍</div>
+    </section>
+
+    <!-- 第三章：家族特色 -->
+    <section class="chapter chapter-feature" id="feature" data-chapter="3">
+        <div class="chapter-head">
+            <span class="chapter-num">03</span>
+            <span class="chapter-label">家族特色</span>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card-v2" data-tilt>
+                <div class="fc-number">01</div>
+                <div class="fc-icon">忍</div>
+                <h3 class="fc-title">忍者培养</h3>
+                <p class="fc-desc">资深大佬带飞，新手副本全程指导。从苍牙、小黑到琳琅，每一个忍者都有人教你怎么玩。</p>
+                <div class="fc-line"></div>
+            </div>
+            <div class="feature-card-v2" data-tilt>
+                <div class="fc-number">02</div>
+                <div class="fc-icon">战</div>
+                <h3 class="fc-title">家族战</h3>
+                <p class="fc-desc">每周家族战稳定参与，阵容搭配、走位技巧一应俱全。一起为了家族荣耀而战。</p>
+                <div class="fc-line"></div>
+            </div>
+            <div class="feature-card-v2" data-tilt>
+                <div class="fc-number">03</div>
+                <div class="fc-icon">乐</div>
+                <h3 class="fc-title">快乐至上</h3>
+                <p class="fc-desc">没有压力，没有强制要求。游戏本就是娱乐，找到一起玩得开心的小伙伴才是真。</p>
+                <div class="fc-line"></div>
+            </div>
+            <div class="feature-card-v2" data-tilt>
+                <div class="fc-number">04</div>
+                <div class="fc-icon">渊</div>
+                <h3 class="fc-title">深渊挑战</h3>
+                <p class="fc-desc">每周深渊稳定冲层，大佬带队飞。阵容搭配、走位节奏全程指导，一起突破极限层数。</p>
+                <div class="fc-line"></div>
+            </div>
+            <div class="feature-card-v2" data-tilt>
+                <div class="fc-number">05</div>
+                <div class="fc-icon">棉</div>
+                <h3 class="fc-title">棉花福利</h3>
+                <p class="fc-desc">家族专属种棉花小游戏，点击族长还能领一百抽。快乐种棉，福利拿到手软，主打一个白嫖。</p>
+                <div class="fc-line"></div>
+            </div>
+            <div class="feature-card-v2" data-tilt>
+                <div class="fc-number">06</div>
+                <div class="fc-icon">水</div>
+                <h3 class="fc-title">水群闲聊</h3>
+                <p class="fc-desc">日常吹水不打扰，趣事分享、抽卡晒欧、攻略讨论一应俱全。游戏之外，还有一群有趣的人。</p>
+                <div class="fc-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 第四章：加入我们 -->
+    <section class="chapter chapter-cta" id="cta" data-chapter="4">
+        <div class="cta-bg-ink"></div>
+        <div class="cta-content">
+            <p class="cta-tag">你的忍道，由此开始</p>
+            <h2 class="cta-title">加入<span class="cta-highlight">快乐是种天赋</span></h2>
+            <p class="cta-desc">无论你是萌新还是大佬，这里都有属于你的位置。<br>来家族免费种棉花，一起快乐游戏。</p>
+            <a href="招募加入.html" class="btn-primary btn-cta">
+                <span>立即申请</span>
+                <svg viewBox="0 0 24 24" width="16" height="16"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <div class="footer">
+        <div class="footer-content">
+            <p class="footer-name">快乐是种天赋</p>
+            <p class="footer-slogan">来家族免费种棉花</p>
+            <p class="footer-info">本页面为玩家自制内容 · 仅供家族招新使用 · 与官方无关</p>
+        </div>
+    </div>
+
+    <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/首页.js"></script>
+</body>
+</html>
