@@ -1,0 +1,901 @@
+/* ===== 种棉花页样式（3A升级版）===== */
+
+/* ===== 章节背景：深黑渐变 + mh.jpeg带遮罩 ===== */
+.section-cotton {
+    position: relative;
+    background:
+        linear-gradient(180deg, rgba(10, 10, 15, 0.95) 0%, rgba(20, 5, 5, 0.96) 50%, rgba(10, 10, 15, 0.98) 100%),
+        url("../images/mh.jpeg") center / cover no-repeat fixed;
+    min-height: 100vh;
+    padding: 140px 20px 100px;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* 背景氛围光晕遮罩 */
+.section-cotton::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 18% 22%, rgba(200, 22, 29, 0.10) 0%, transparent 42%),
+        radial-gradient(circle at 82% 78%, rgba(240, 199, 94, 0.08) 0%, transparent 42%),
+        linear-gradient(180deg, transparent 60%, rgba(5, 5, 8, 0.6) 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.section-cotton .section-inner {
+    position: relative;
+    z-index: 2;
+}
+
+/* ===== 章节标题：镂空大数字 01 + 标签 ===== */
+.section-cotton .chapter-head-v2 {
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.section-cotton .chapter-num-v2 {
+    font-size: 92px;
+    -webkit-text-stroke: 1.5px #c8161d;
+    text-shadow: 0 0 32px rgba(200, 22, 29, 0.35);
+    line-height: 1;
+}
+
+.section-cotton .chapter-label-v2 {
+    font-size: 14px;
+    letter-spacing: 8px;
+    color: #f0c75e;
+}
+
+/* 原 section-title 降级为副标题（保留元素） */
+.section-cotton .section-title {
+    font-size: 18px;
+    color: #aaa;
+    letter-spacing: 10px;
+    font-weight: normal;
+    margin-bottom: 64px;
+}
+
+.section-cotton .section-title::before,
+.section-cotton .section-title::after {
+    width: 56px;
+    margin: 0 18px;
+    opacity: 0.35;
+}
+
+/* ===== 左右布局 ===== */
+.cotton-layout {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 56px;
+    margin-top: 20px;
+}
+
+.cotton-left {
+    flex: 0 0 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cotton-right {
+    flex: 1;
+    min-width: 300px;
+    max-width: 520px;
+}
+
+/* ===== 族长卡片：磨砂玻璃 + 金色相框 ===== */
+.zuzhang-card {
+    width: 260px;
+    background: linear-gradient(160deg, rgba(30, 25, 20, 0.78), rgba(18, 12, 10, 0.88));
+    border: 1px solid rgba(240, 199, 94, 0.32);
+    border-radius: 20px;
+    padding: 28px 22px 24px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow:
+        0 18px 50px rgba(0, 0, 0, 0.55),
+        0 0 0 1px rgba(240, 199, 94, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 卡片顶部金线 */
+.zuzhang-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 65%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #f0c75e, transparent);
+    opacity: 0.85;
+    box-shadow: 0 0 12px rgba(240, 199, 94, 0.5);
+}
+
+/* 卡片底部朱红光晕 */
+.zuzhang-card::after {
+    content: "";
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 80px;
+    background: radial-gradient(ellipse at center, rgba(200, 22, 29, 0.18), transparent 70%);
+    pointer-events: none;
+}
+
+/* 金色渐变相框 */
+.zuzhang-frame {
+    width: 168px;
+    height: 210px;
+    margin: 0 auto;
+    padding: 3px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #f0c75e 0%, #c8161d 50%, #f0c75e 100%);
+    box-shadow:
+        0 0 28px rgba(240, 199, 94, 0.38),
+        0 10px 24px rgba(0, 0, 0, 0.45);
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+.zuzhang-frame:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 0 42px rgba(240, 199, 94, 0.6),
+        0 16px 32px rgba(0, 0, 0, 0.5);
+}
+
+.zuzhang {
+    width: 100%;
+    height: 100%;
+    border-radius: 11px;
+    overflow: hidden;
+    position: relative;
+    background: #0a0a0f;
+}
+
+.zuzhang img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.zuzhang-frame:hover .zuzhang img {
+    transform: scale(1.07);
+}
+
+.zuzhang-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 4px 12px;
+    background: linear-gradient(135deg, #c8161d, #8b0e14);
+    color: #f0c75e;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    border-radius: 10px;
+    border: 1px solid #f0c75e;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+.zuzhang.shake {
+    animation: zuzhangShake 0.4s ease;
+}
+
+@keyframes zuzhangShake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-8px) rotate(-2deg); }
+    40% { transform: translateX(8px) rotate(2deg); }
+    60% { transform: translateX(-6px) rotate(-1deg); }
+    80% { transform: translateX(6px) rotate(1deg); }
+}
+
+.zuzhang-name {
+    text-align: center;
+    color: #f0c75e;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin: 18px 0 16px;
+    text-shadow: 0 0 14px rgba(240, 199, 94, 0.5);
+    position: relative;
+    z-index: 1;
+}
+
+/* 对话气泡：带三角小尖 */
+.zuzhang-talk {
+    position: relative;
+    padding: 13px 18px;
+    background: rgba(240, 199, 94, 0.12);
+    border: 1px solid rgba(240, 199, 94, 0.4);
+    border-radius: 12px;
+    color: #f0c75e;
+    font-size: 13px;
+    line-height: 1.7;
+    text-align: center;
+    min-height: 20px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.zuzhang-talk::before {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 12px;
+    height: 12px;
+    background: rgba(240, 199, 94, 0.12);
+    border-left: 1px solid rgba(240, 199, 94, 0.4);
+    border-top: 1px solid rgba(240, 199, 94, 0.4);
+}
+
+.zuzhang-talk.active {
+    background: rgba(240, 199, 94, 0.2);
+    border-color: rgba(240, 199, 94, 0.7);
+    box-shadow: 0 0 20px rgba(240, 199, 94, 0.38);
+}
+
+.zuzhang-talk.active::before {
+    background: rgba(240, 199, 94, 0.2);
+    border-color: rgba(240, 199, 94, 0.7);
+}
+
+/* ===== 棉花田 ===== */
+.cotton-tip {
+    text-align: center;
+    color: #aaa;
+    font-size: 15px;
+    letter-spacing: 1px;
+    margin-bottom: 32px;
+}
+
+.cotton-stats {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 34px;
+    gap: 16px;
+}
+
+.cotton-stat {
+    background: linear-gradient(160deg, rgba(20, 20, 25, 0.7), rgba(12, 12, 16, 0.8));
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 10px;
+    padding: 16px 30px;
+    margin: 8px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 150px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.05),
+        0 6px 20px rgba(0, 0, 0, 0.3);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cotton-stat:hover {
+    border-color: rgba(240, 199, 94, 0.6);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 8px 24px rgba(240, 199, 94, 0.15);
+}
+
+.cotton-label {
+    color: #aaa;
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+}
+
+.cotton-num {
+    color: #f0c75e;
+    font-size: 34px;
+    font-weight: bold;
+    text-shadow: 0 0 12px rgba(240, 199, 94, 0.45);
+    line-height: 1;
+}
+
+.cotton-field {
+    display: grid;
+    grid-template-columns: repeat(4, 92px);
+    grid-gap: 14px;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 24px;
+    background: rgba(8, 8, 12, 0.35);
+    border: 1px solid rgba(240, 199, 94, 0.1);
+    border-radius: 16px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+/* 棉花田格子：圆角 + 内阴影 + 悬停发光 */
+.cotton-cell {
+    width: 92px;
+    height: 92px;
+    background: linear-gradient(160deg, rgba(40, 30, 20, 0.55), rgba(20, 15, 10, 0.65));
+    border: 2px dashed rgba(212, 175, 55, 0.3);
+    border-radius: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    transition: all 0.3s ease;
+    user-select: none;
+    position: relative;
+    box-shadow:
+        inset 0 2px 6px rgba(0, 0, 0, 0.45),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.cotton-cell.empty:hover {
+    background: linear-gradient(160deg, rgba(60, 45, 25, 0.7), rgba(30, 22, 14, 0.8));
+    border-color: #f0c75e;
+    border-style: solid;
+    transform: scale(1.06) translateY(-2px);
+    box-shadow:
+        inset 0 2px 6px rgba(0, 0, 0, 0.4),
+        0 0 22px rgba(240, 199, 94, 0.5);
+}
+
+.cotton-cell.seed {
+    background: linear-gradient(160deg, rgba(80, 60, 30, 0.6), rgba(40, 30, 16, 0.75));
+    border: 2px solid rgba(212, 175, 55, 0.5);
+    border-style: solid;
+    cursor: pointer;
+    box-shadow:
+        inset 0 2px 6px rgba(0, 0, 0, 0.4),
+        0 0 10px rgba(212, 175, 55, 0.15);
+    animation: seedWiggle 2s ease-in-out infinite;
+}
+
+@keyframes seedWiggle {
+    0%, 100% { transform: rotate(0); }
+    25%      { transform: rotate(-3deg) scale(0.95); }
+    75%      { transform: rotate(3deg) scale(0.95); }
+}
+
+/* 发芽阶段 */
+.cotton-cell.sprout {
+    background: linear-gradient(160deg, rgba(60, 80, 40, 0.6), rgba(30, 40, 20, 0.75));
+    border: 2px solid rgba(100, 180, 80, 0.4);
+    border-style: solid;
+    cursor: pointer;
+    box-shadow:
+        inset 0 2px 6px rgba(0, 0, 0, 0.4),
+        0 0 12px rgba(100, 180, 80, 0.2);
+    animation: sproutGrow 2s ease-in-out infinite;
+}
+
+@keyframes sproutGrow {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.05); }
+}
+
+/* 开花阶段 */
+.cotton-cell.bloom {
+    background: linear-gradient(160deg, rgba(120, 60, 80, 0.6), rgba(60, 30, 40, 0.75));
+    border: 2px solid rgba(255, 150, 180, 0.5);
+    border-style: solid;
+    cursor: pointer;
+    box-shadow:
+        inset 0 2px 6px rgba(0, 0, 0, 0.4),
+        0 0 16px rgba(255, 150, 180, 0.3);
+    animation: bloomPulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes bloomPulse {
+    from { box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4), 0 0 12px rgba(255, 150, 180, 0.2); }
+    to   { box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4), 0 0 24px rgba(255, 150, 180, 0.5); }
+}
+
+.cotton-cell.ripe {
+    background: linear-gradient(160deg, rgba(240, 240, 240, 0.18), rgba(200, 200, 200, 0.08));
+    border: 2px solid #f0c75e;
+    border-style: solid;
+    cursor: pointer;
+    box-shadow:
+        inset 0 2px 6px rgba(0, 0, 0, 0.25),
+        0 0 22px rgba(240, 199, 94, 0.55);
+    animation: cottonGlow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes cottonGlow {
+    from { box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.25), 0 0 16px rgba(240, 199, 94, 0.45); }
+    to   { box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2), 0 0 34px rgba(240, 199, 94, 0.85); }
+}
+
+.cotton-cell.ripe:hover {
+    transform: scale(1.12) translateY(-3px);
+}
+
+.cotton-cell.harvesting {
+    animation: cottonPop 0.4s ease forwards;
+}
+
+@keyframes cottonPop {
+    0%   { transform: scale(1);   opacity: 1; }
+    50%  { transform: scale(1.3); opacity: 1; }
+    100% { transform: scale(0);  opacity: 0; }
+}
+
+.cotton-plus {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #f0c75e;
+    font-size: 24px;
+    font-weight: bold;
+    pointer-events: none;
+    text-shadow: 0 0 10px rgba(240, 199, 94, 0.6);
+    animation: plusFloat 0.8s ease forwards;
+}
+
+@keyframes plusFloat {
+    0%   { transform: translate(-50%, -50%);  opacity: 1; }
+    100% { transform: translate(-50%, -150%); opacity: 0; }
+}
+
+.cotton-hint {
+    text-align: center;
+    color: #888;
+    font-size: 13px;
+    margin-top: 30px;
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+/* ===== 一百抽按钮 ===== */
+.gacha-stack {
+    position: fixed;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    z-index: 998;
+    pointer-events: none;
+}
+
+.gacha-btn {
+    pointer-events: auto;
+    margin-bottom: 12px;
+    padding: 15px 26px;
+    background: linear-gradient(135deg, #c8161d, #8b0e14);
+    color: #f0c75e;
+    border: 2px solid #f0c75e;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    cursor: pointer;
+    box-shadow:
+        0 0 22px rgba(240, 199, 94, 0.5),
+        0 6px 18px rgba(0, 0, 0, 0.4);
+    animation: gachaIn 0.5s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+}
+
+.gacha-btn:hover {
+    transform: scale(1.08);
+    box-shadow:
+        0 0 32px rgba(240, 199, 94, 0.7),
+        0 8px 22px rgba(0, 0, 0, 0.5);
+}
+
+.gacha-btn:active {
+    transform: scale(0.92);
+}
+
+@keyframes gachaIn {
+    0%   { transform: translateX(120px); opacity: 0; }
+    100% { transform: translateX(0);     opacity: 1; }
+}
+
+.gacha-btn.used {
+    animation: gachaOut 0.4s ease forwards;
+    pointer-events: none;
+}
+
+@keyframes gachaOut {
+    0%   { transform: translateX(0) scale(1);   opacity: 1; }
+    100% { transform: translateX(120px) scale(0); opacity: 0; }
+}
+
+/* ===== 鞭子动画 ===== */
+.whip-effect {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    filter: drop-shadow(0 0 14px rgba(240, 199, 94, 0.65));
+}
+
+.whip-effect.show {
+    animation: whipStrike 0.55s cubic-bezier(0.25, 0.8, 0.35, 1);
+}
+
+@keyframes whipStrike {
+    0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.4) rotate(-70deg); }
+    20%  { opacity: 1; transform: translate(-50%, -50%) scale(1.25) rotate(35deg); }
+    45%  { opacity: 1; transform: translate(-50%, -50%) scale(1.15) rotate(15deg); }
+    70%  { opacity: 0.9; transform: translate(-50%, -50%) scale(1.05) rotate(-5deg); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1) rotate(0); }
+}
+
+/* ===== 屏幕震动 ===== */
+body.shake-screen {
+    animation: screenShake 0.5s ease;
+}
+
+@keyframes screenShake {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-8px, -4px); }
+    20% { transform: translate(8px, 4px); }
+    30% { transform: translate(-6px, 6px); }
+    40% { transform: translate(6px, -6px); }
+    50% { transform: translate(-4px, -2px); }
+    60% { transform: translate(4px, 2px); }
+    70% { transform: translate(-2px, 4px); }
+    80% { transform: translate(2px, -4px); }
+    90% { transform: translate(-1px, 1px); }
+}
+
+/* ===== 去抽卡入口条 ===== */
+.goto-gacha-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin: 30px auto 0;
+    max-width: 500px;
+    padding: 18px 28px;
+    background: linear-gradient(135deg, rgba(28, 20, 22, 0.8), rgba(16, 13, 16, 0.7));
+    border: 1px solid rgba(240, 199, 94, 0.3);
+    border-radius: 10px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.goto-gacha-info {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+}
+
+.goto-gacha-label {
+    color: #aaa;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.goto-gacha-num {
+    color: #f0c75e;
+    font-size: 28px;
+    font-weight: bold;
+    font-family: "Courier New", monospace;
+    text-shadow: 0 0 12px rgba(240, 199, 94, 0.5);
+}
+
+.goto-gacha-unit {
+    color: #888;
+    font-size: 13px;
+}
+
+.goto-gacha-btn {
+    color: #f0c75e;
+    font-size: 15px;
+    letter-spacing: 3px;
+    text-decoration: none;
+    padding: 10px 24px;
+    border: 1px solid rgba(240, 199, 94, 0.4);
+    border-radius: 6px;
+    background: rgba(240, 199, 94, 0.08);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.goto-gacha-btn:hover {
+    background: rgba(240, 199, 94, 0.2);
+    border-color: #f0c75e;
+    box-shadow: 0 0 16px rgba(240, 199, 94, 0.4);
+}
+
+/* ===== 连击系统样式 ===== */
+.combo-stat {
+    position: relative;
+}
+
+.combo-multi {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 8px;
+    font-size: 14px;
+    color: #888;
+    background: rgba(100, 100, 100, 0.2);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.combo-multi.active {
+    color: #f0c75e;
+    background: rgba(240, 199, 94, 0.2);
+    border: 1px solid rgba(240, 199, 94, 0.5);
+    box-shadow: 0 0 10px rgba(240, 199, 94, 0.4);
+    animation: multiPulse 1s ease-in-out infinite;
+}
+
+@keyframes multiPulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.1); }
+}
+
+/* 连击浮动文字 */
+.combo-display {
+    text-align: center;
+    font-size: 0;
+    opacity: 0;
+    height: 36px;
+    margin-bottom: 8px;
+    color: #f0c75e;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+.combo-display.show {
+    font-size: 28px;
+    opacity: 1;
+    text-shadow: 0 0 20px rgba(240, 199, 94, 0.8);
+}
+
+.combo-display.bounce {
+    animation: comboBounce 0.5s ease;
+}
+
+@keyframes comboBounce {
+    0%   { transform: scale(0.5); opacity: 0; }
+    50%  { transform: scale(1.3); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* 连击收获+号特殊样式 */
+.cotton-plus.combo {
+    color: #f0c75e !important;
+    font-size: 20px !important;
+    text-shadow: 0 0 15px rgba(240, 199, 94, 1) !important;
+}
+
+/* ==========================================================
+   手机端适配（≤768px）
+   ========================================================== */
+@media screen and (max-width: 768px) {
+
+    /* 章节背景：fixed 改为 scroll（iOS兼容），padding 减少 */
+    .section-cotton {
+        background:
+            linear-gradient(180deg, rgba(10, 10, 15, 0.95) 0%, rgba(20, 5, 5, 0.96) 50%, rgba(10, 10, 15, 0.98) 100%),
+            url("../images/mh.jpeg") center / cover no-repeat scroll;
+        padding: 80px 14px 60px;
+        min-height: auto;
+    }
+
+    /* 章节大数字缩小 */
+    .section-cotton .chapter-head-v2 {
+        margin-bottom: 12px;
+    }
+    .section-cotton .chapter-num-v2 {
+        font-size: 56px;
+        -webkit-text-stroke: 1px #c8161d;
+        text-shadow: 0 0 20px rgba(200, 22, 29, 0.3);
+    }
+    .section-cotton .chapter-label-v2 {
+        font-size: 11px;
+        letter-spacing: 4px;
+    }
+
+    /* 副标题 */
+    .section-cotton .section-title {
+        font-size: 14px;
+        letter-spacing: 5px;
+        margin-bottom: 32px;
+    }
+    .section-cotton .section-title::before,
+    .section-cotton .section-title::after {
+        width: 30px;
+        margin: 0 10px;
+    }
+
+    /* 左右布局改为垂直：族长在上，棉花田在下 */
+    .cotton-layout {
+        flex-direction: column;
+        gap: 28px;
+        margin-top: 10px;
+    }
+    .cotton-left {
+        flex: none;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .cotton-right {
+        flex: none;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    /* 族长卡片缩小 */
+    .zuzhang-card {
+        width: 100%;
+        max-width: 260px;
+        padding: 20px 18px 18px;
+    }
+    .zuzhang-frame {
+        width: 130px;
+        height: 165px;
+    }
+    .zuzhang-frame:active {
+        transform: translateY(-3px);
+        box-shadow:
+            0 0 36px rgba(240, 199, 94, 0.55),
+            0 12px 28px rgba(0, 0, 0, 0.5);
+    }
+    .zuzhang-frame:active .zuzhang img {
+        transform: scale(1.05);
+    }
+    .zuzhang-name {
+        font-size: 15px;
+        margin: 14px 0 12px;
+        letter-spacing: 2px;
+    }
+    .zuzhang-talk {
+        padding: 10px 14px;
+        font-size: 12px;
+    }
+
+    /* 棉花提示文字 */
+    .cotton-tip {
+        font-size: 13px;
+        letter-spacing: 0;
+        margin-bottom: 20px;
+    }
+
+    /* 棉花统计 */
+    .cotton-stats {
+        margin-bottom: 22px;
+        gap: 10px;
+    }
+    .cotton-stat {
+        padding: 12px 18px;
+        margin: 4px;
+        min-width: 100px;
+    }
+    .cotton-stat:active {
+        border-color: rgba(240, 199, 94, 0.6);
+        box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.08),
+            0 8px 24px rgba(240, 199, 94, 0.15);
+    }
+    .cotton-label {
+        font-size: 11px;
+        letter-spacing: 2px;
+        margin-bottom: 6px;
+    }
+    .cotton-num {
+        font-size: 24px;
+    }
+
+    /* 棉花田：保持grid但用 aspect-ratio 自适应 */
+    .cotton-field {
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 8px;
+        padding: 14px;
+    }
+    .cotton-cell {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        font-size: 30px;
+    }
+    .cotton-cell.empty:active {
+        background: linear-gradient(160deg, rgba(60, 45, 25, 0.7), rgba(30, 22, 14, 0.8));
+        border-color: #f0c75e;
+        border-style: solid;
+        transform: scale(1.04);
+        box-shadow:
+            inset 0 2px 6px rgba(0, 0, 0, 0.4),
+            0 0 22px rgba(240, 199, 94, 0.5);
+    }
+    .cotton-cell.ripe:active {
+        transform: scale(1.08) translateY(-2px);
+    }
+
+    .cotton-hint {
+        font-size: 12px;
+        margin-top: 20px;
+    }
+
+    /* 一百抽按钮 */
+    .gacha-stack {
+        right: 12px;
+    }
+    .gacha-btn {
+        padding: 12px 20px;
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+    .gacha-btn:active {
+        transform: scale(0.92);
+    }
+
+    /* 去抽卡入口条 */
+    .goto-gacha-bar {
+        flex-direction: column;
+        gap: 14px;
+        padding: 16px 18px;
+        margin: 24px auto 0;
+        max-width: 100%;
+    }
+    .goto-gacha-num { font-size: 22px; }
+    .goto-gacha-btn {
+        font-size: 14px;
+        padding: 9px 22px;
+        letter-spacing: 2px;
+    }
+    .goto-gacha-btn:active {
+        background: rgba(240, 199, 94, 0.2);
+        border-color: #f0c75e;
+        box-shadow: 0 0 16px rgba(240, 199, 94, 0.4);
+    }
+
+    /* 连击显示 */
+    .combo-display {
+        height: 28px;
+        margin-bottom: 6px;
+    }
+    .combo-display.show {
+        font-size: 22px;
+    }
+    .combo-multi {
+        font-size: 12px;
+    }
+
+    /* 屏幕震动幅度减小 */
+    @keyframes screenShake {
+        0%, 100% { transform: translate(0, 0); }
+        25% { transform: translate(-4px, -2px); }
+        50% { transform: translate(4px, 2px); }
+        75% { transform: translate(-2px, 2px); }
+    }
+}
