@@ -467,6 +467,7 @@
     display: flex;
     align-items: center;
     gap: 6px;
+    pointer-events: auto;
 }
 
 .avatar-tabs {
@@ -484,6 +485,7 @@
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.3s ease;
+    pointer-events: auto;
 }
 
 .avatar-tab.active {
@@ -494,7 +496,7 @@
 .avatar-grid {
     display: none;
     position: absolute;
-    bottom: calc(100% + 8px);
+    top: calc(100% + 8px);
     left: 0;
     width: 200px;
     max-height: 240px;
@@ -507,6 +509,7 @@
     border-radius: 10px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
     z-index: 100;
+    pointer-events: auto;
 }
 
 .avatar-grid.show {
@@ -531,6 +534,7 @@
     cursor: pointer;
     border: 2px solid transparent;
     transition: all 0.3s ease;
+    pointer-events: auto;
 }
 
 .avatar-item img {
@@ -573,6 +577,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     flex-shrink: 0;
+    pointer-events: auto;
 }
 
 .selected-avatar img {
