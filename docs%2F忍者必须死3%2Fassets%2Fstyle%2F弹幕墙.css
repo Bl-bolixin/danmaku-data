@@ -493,7 +493,7 @@
 .avatar-grid {
     display: none;
     position: absolute;
-    bottom: calc(100% + 8px);
+    top: calc(100% + 8px);
     left: 0;
     width: 300px;
     max-height: 280px;
