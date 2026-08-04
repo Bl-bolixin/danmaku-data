@@ -1,0 +1,154 @@
+<!--
+ * @Author: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
+ * @Date: 2026-08-02 14:47:34
+ * @LastEditors: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
+ * @LastEditTime: 2026-08-04 15:32:08
+ * @FilePath: \yy\忍者必须死3\view\招募加入.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快乐是种天赋 - 招募加入</title>
+    <link rel="stylesheet" href="../assets/style/common.css">
+    <link rel="stylesheet" href="../assets/style/招募加入.css">
+</head>
+<body>
+    <!-- 页面加载动画 -->
+    <div class="loader" id="loader">
+        <div class="loader-ink">
+            <div class="ink-circle"></div>
+            <span class="loader-char">忍</span>
+        </div>
+        <p class="loader-text">快乐是种天赋</p>
+    </div>
+    <!-- 顶部滚动进度条 -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <!-- 粒子背景 -->
+    <canvas class="particles" id="particles"></canvas>
+
+    <!-- 顶部导航 -->
+    <div class="nav">
+        <div class="nav-logo">
+            <span class="logo-mark">忍</span>
+            <span class="logo-text">快乐是种天赋</span>
+        </div>
+        <div class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="首页.html">首页</a>
+            <a href="核心成员.html">核心成员</a>
+            <a href="种棉花.html">种棉花</a>
+            <a href="小游戏.html">小游戏</a>
+            <a href="QQ群精华.html">弹幕墙</a>
+            <a href="招募加入.html" class="active">招募加入</a>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero-join">
+        <div class="hero-mask"></div>
+        <div class="hero-lines">
+            <div class="line-deco line-top"></div>
+            <div class="line-deco line-bottom"></div>
+        </div>
+        <div class="hero-content">
+            <p class="hero-tag">
+                <span class="tag-dot"></span>
+                <span class="tag-text">NINJA MUST DIE 3 · 家族招募中</span>
+            </p>
+            <h1 class="hero-title">招募加入</h1>
+            <p class="hero-subtitle">你的忍道 · 由此开始</p>
+            <div class="hero-scroll-hint">
+                <span>SCROLL</span>
+                <div class="scroll-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 招募要求 -->
+    <section class="section section-require section-v2">
+        <div class="section-inner">
+            <div class="chapter-head-v2">
+                <span class="chapter-num-v2">01</span>
+                <span class="chapter-label-v2">招募要求 / RECRUITMENT</span>
+            </div>
+            <ul class="require-list">
+                <li class="animate-box"><span class="require-dot"></span>能稳定深渊，副本，族战三选一</li>
+                <li class="animate-box"><span class="require-dot"></span>每周活跃度 ≥ 200，无连续7天离线，学生党可请假</li>
+                <li class="animate-box"><span class="require-dot"></span>性格友善，不撕不闹，文明游戏</li>
+                <li class="animate-box"><span class="require-dot"></span>有 QQ 群通讯条件（不是必要条件）</li>
+                <li class="animate-box"><span class="require-dot"></span>热爱忍3，认同"快乐游戏"理念</li>
+            </ul>
+            <p class="require-tip animate-box">* 满足以上任意3条即可申请，特殊情况可联系族长沟通</p>
+        </div>
+    </section>
+
+    <!-- 报名表单 -->
+    <section class="section section-join section-v2">
+        <div class="section-inner">
+            <div class="chapter-head-v2">
+                <span class="chapter-num-v2">02</span>
+                <span class="chapter-label-v2">立即加入 / JOIN US</span>
+            </div>
+            <p class="join-tip animate-box">填写下方信息，族长会在24小时内联系你</p>
+            <form class="join-form animate-box" onsubmit="return submitForm()">
+                <div class="form-row">
+                    <label>游戏昵称</label>
+                    <input type="text" id="nick" placeholder="请输入你的游戏昵称">
+                </div>
+                <div class="form-row">
+                    <label>主玩忍者</label>
+                    <select id="ninja">
+                        <option value="">请选择主玩忍者</option>
+                        <option>小黑</option>
+                        <option>阿力</option>
+                        <option>苍牙</option>
+                        <option>琳</option>
+                        <option>小椒</option>
+                        <option>伊鹤</option>
+                        <option>洛青</option>
+                        <option>银枭</option>
+                        <option>老板娘</option>
+                        <option>卫鲤</option>
+                        <option>兮兰</option>
+                        <option>紫原</option>
+                        <option>隼白</option>
+                        <option>剑客：血影</option>
+                        <option>其他</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label>联系方式</label>
+                    <input type="text" id="contact" placeholder="请输入你的QQ">
+                </div>
+                <div class="form-row">
+                    <label>自我介绍</label>
+                    <textarea id="intro" placeholder="说说你自己，让我们更了解你~"></textarea>
+                </div>
+                <button type="submit" class="submit-btn btn-primary-v2">
+                    <span>提交申请</span>
+                    <svg viewBox="0 0 24 24" width="16" height="16"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <div class="footer">
+        <div class="footer-content">
+            <p class="footer-name">快乐是种天赋</p>
+            <p class="footer-slogan">来家族免费种棉花</p>
+            <p class="footer-info">本页面为玩家自制内容 · 仅供家族招新使用 · 与官方无关</p>
+        </div>
+    </div>
+
+    <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/招募加入.js"></script>
+</body>
+</html>
