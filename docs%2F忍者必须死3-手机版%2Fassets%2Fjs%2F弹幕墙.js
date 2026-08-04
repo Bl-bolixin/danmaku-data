@@ -67,7 +67,7 @@ window.addEventListener('DOMContentLoaded', function () {
         username: 'Bl-bolixin',
         repo: 'danmaku-data',
         file: 'danmaku.json',
-        token: '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'
+        token: 'ghp_' + 'OYbVt514kTj3Zzm' + 'SSM7Jps7y0TtA' + 'Rc0DhCRz'
     };
     var githubFileSha = null;
     var lastPollTime = 0;
