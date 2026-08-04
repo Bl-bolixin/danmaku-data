@@ -72,6 +72,8 @@ window.addEventListener('DOMContentLoaded', function () {
     var githubFileSha = null;
     var lastPollTime = 0;
     var seenMsgIds = {};
+    // 记录本机发送的弹幕ID，用于避免轮询时重复显示
+    var selfSentMsgIds = {};
 
     // 速度映射（秒）
     var SPEED_MAP = { slow: 18, normal: 12, fast: 7 };
@@ -182,6 +184,10 @@ window.addEventListener('DOMContentLoaded', function () {
             messages.forEach(function (msg) {
                 if (!seenMsgIds[msg.id]) {
                     seenMsgIds[msg.id] = true;
+                    // 跳过本机刚发送的弹幕（已显示过带"我"标志的版本）
+                    if (selfSentMsgIds[msg.id]) {
+                        return;
+                    }
                     fireDanmaku(msg.text, msg.color, true, msg.avatar, false);
                     newCount++;
                 }
@@ -215,7 +221,9 @@ window.addEventListener('DOMContentLoaded', function () {
             if (messages.length > 500) {
                 messages = messages.slice(-500);
             }
-            return githubWrite(messages);
+            return githubWrite(messages).then(function () {
+                return newMsg.id;
+            });
         });
     }
 
@@ -610,8 +618,13 @@ window.addEventListener('DOMContentLoaded', function () {
         // 保存到 GitHub
         btnSend.disabled = true;
         btnSend.textContent = '发送中...';
-        githubSend(text, color, currentAvatar).then(function () {
+        githubSend(text, color, currentAvatar).then(function (msgId) {
             lastSendTime = Date.now();
+            // 记录本机发送的弹幕ID，轮询时跳过避免重复显示
+            if (msgId) {
+                selfSentMsgIds[msgId] = true;
+                seenMsgIds[msgId] = true;
+            }
             btnSend.disabled = false;
             btnSend.textContent = '发射';
         }).catch(function (err) {
