@@ -1,1 +1,11 @@
-[]
+{
+    "time":  1785840856931,
+    "color":  "gold",
+    "id":  "msg_test_20260804185416",
+    "text":  "PowerShell test message",
+    "avatar":  {
+                   "pool":  "SSR",
+                   "img":  "test.png",
+                   "name":  "test"
+               }
+}
