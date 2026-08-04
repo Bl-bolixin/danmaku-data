@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快乐是种天赋 - 种棉花</title>
+    <link rel="stylesheet" href="../assets/style/common.css">
+    <link rel="stylesheet" href="../assets/style/种棉花.css">
+</head>
+<body>
+    <!-- 页面加载动画 -->
+    <div class="loader" id="loader">
+        <div class="loader-ink">
+            <div class="ink-circle"></div>
+            <span class="loader-char">忍</span>
+        </div>
+        <p class="loader-text">快乐是种天赋</p>
+    </div>
+    <!-- 顶部滚动进度条 -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <!-- 自定义光标 -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+    <!-- 粒子背景 -->
+    <canvas class="particles" id="particles"></canvas>
+    <!-- 顶部导航 -->
+    <div class="nav">
+        <div class="nav-logo">
+            <span class="logo-mark">忍</span>
+            <span class="logo-text">快乐是种天赋</span>
+        </div>
+        <div class="nav-links">
+            <a href="首页.html">首页</a>
+            <a href="核心成员.html">核心成员</a>
+            <a href="种棉花.html" class="active">种棉花</a>
+            <a href="小游戏.html">小游戏</a>
+            <a href="QQ群精华.html">弹幕墙</a>
+            <a href="招募加入.html">招募加入</a>
+        </div>
+    </div>
+
+    <!-- 种棉花小游戏 -->
+    <div class="section section-cotton">
+        <div class="section-inner">
+            <div class="chapter-head-v2">
+                <span class="chapter-num-v2">01</span>
+                <span class="chapter-label-v2">种棉花 · COTTON FARM</span>
+            </div>
+            <h2 class="section-title">种棉花</h2>
+            <div class="cotton-layout">
+                <!-- 左侧：族长 -->
+                <div class="cotton-left">
+                    <div class="zuzhang-card">
+                        <div class="zuzhang-frame">
+                            <div class="zuzhang" id="zuzhang" title="点我对话">
+                                <img src="../assets/images/zz.jpg" alt="族长">
+                                <span class="zuzhang-badge">族长</span>
+                            </div>
+                        </div>
+                        <h3 class="zuzhang-name">房产NNNNNN哥</h3>
+                        <div class="zuzhang-talk" id="zuzhangTalk">点我对话</div>
+                    </div>
+                </div>
+                <!-- 右侧：棉花田 -->
+                <div class="cotton-right">
+                    <p class="cotton-tip">点击空地种下种子，长成棉花就能收获！连续收获触发连击！</p>
+                    <div class="cotton-stats">
+                        <div class="cotton-stat">
+                            <span class="cotton-label">棉花仓库</span>
+                            <span class="cotton-num" id="cottonNum">0</span>
+                        </div>
+                        <div class="cotton-stat">
+                            <span class="cotton-label">累计收获</span>
+                            <span class="cotton-num" id="cottonTotal">0</span>
+                        </div>
+                        <div class="cotton-stat combo-stat">
+                            <span class="cotton-label">当前连击</span>
+                            <span class="cotton-num" id="comboNum">0</span>
+                            <span class="combo-multi" id="comboMulti">×1</span>
+                        </div>
+                    </div>
+                    <!-- 连击显示 -->
+                    <div class="combo-display" id="comboDisplay"></div>
+                    <div class="cotton-field" id="cottonField"></div>
+                    <p class="cotton-hint">小提示：棉花有4个成长阶段，点击可催熟。连击越高获得抽卡券越多！</p>
+                </div>
+            </div>
+            <p class="cotton-hint" style="margin-top:20px;text-align:center;">提示：多点点族长，会有惊喜福利~</p>
+
+            <!-- 去抽卡入口 -->
+            <div class="goto-gacha-bar" id="gotoGachaBar">
+                <div class="goto-gacha-info">
+                    <span class="goto-gacha-label">抽卡券</span>
+                    <span class="goto-gacha-num" id="cottonTicketsNum">0</span>
+                    <span class="goto-gacha-unit">张</span>
+                </div>
+                <a href="小游戏.html" class="goto-gacha-btn">去抽卡 →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer">
+        <div class="footer-content">
+            <p class="footer-name">快乐是种天赋</p>
+            <p class="footer-slogan">来家族免费种棉花</p>
+            <p class="footer-info">本页面为玩家自制内容 · 仅供家族招新使用 · 与官方无关</p>
+        </div>
+    </div>
+
+    <!-- 一百抽按钮容器 -->
+    <div class="gacha-stack" id="gachaStack"></div>
+
+    <!-- 鞭子动画 -->
+    <div class="whip-effect" id="whipEffect">
+        <svg viewBox="0 0 120 120" width="140" height="140" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="whipBody" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#5a2d0c"/>
+                    <stop offset="40%" stop-color="#8b4513"/>
+                    <stop offset="75%" stop-color="#d4a017"/>
+                    <stop offset="100%" stop-color="#f0c75e"/>
+                </linearGradient>
+            </defs>
+            <rect x="6" y="86" width="7" height="18" rx="2" fill="#3a1d08"/>
+            <rect x="10" y="88" width="24" height="14" rx="4" fill="#5a2d0c" stroke="#2a1404" stroke-width="1.5"/>
+            <line x1="14" y1="88" x2="14" y2="102" stroke="#2a1404" stroke-width="1"/>
+            <line x1="20" y1="88" x2="20" y2="102" stroke="#2a1404" stroke-width="1"/>
+            <line x1="26" y1="88" x2="26" y2="102" stroke="#2a1404" stroke-width="1"/>
+            <path d="M34,95 Q48,68 40,48 Q33,28 52,16 Q66,8 88,8"
+                  stroke="url(#whipBody)" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+            <circle cx="88" cy="8" r="5" fill="#f0c75e" opacity="0.95"/>
+            <circle cx="88" cy="8" r="9" fill="#f0c75e" opacity="0.3"/>
+            <path d="M70,16 Q78,12 84,10" stroke="#f0c75e" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/>
+        </svg>
+    </div>
+
+    <!-- 族长对话音效 -->
+    <audio id="audioMan" src="../assets/audio/man.mp3" preload="auto"></audio>
+
+    <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/种棉花.js"></script>
+</body>
+</html>
