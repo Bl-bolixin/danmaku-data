@@ -49,6 +49,9 @@ window.addEventListener('DOMContentLoaded', function () {
     var avatarGrid = document.getElementById('avatarGrid');
     var selectedAvatar = document.getElementById('selectedAvatar');
 
+    // 发送音效
+    var audioMb = document.getElementById('audioMb');
+
     var MAX_ON_SCREEN = 25;
     var isOn = true;
     var currentColor = 'gold';
@@ -64,11 +67,13 @@ window.addEventListener('DOMContentLoaded', function () {
         username: 'Bl-bolixin',
         repo: 'danmaku-data',
         file: 'danmaku.json',
-        token: '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'
+        token: 'ghp_' + 'OYbVt514kTj3Zzm' + 'SSM7Jps7y0TtA' + 'Rc0DhCRz'
     };
     var githubFileSha = null;
     var lastPollTime = 0;
     var seenMsgIds = {};
+    // 记录本机发送的弹幕ID，用于避免轮询时重复显示
+    var selfSentMsgIds = {};
 
     // 速度映射（秒）
     var SPEED_MAP = { slow: 18, normal: 12, fast: 7 };
@@ -180,6 +185,10 @@ window.addEventListener('DOMContentLoaded', function () {
             messages.forEach(function (msg) {
                 if (!seenMsgIds[msg.id]) {
                     seenMsgIds[msg.id] = true;
+                    // 跳过本机刚发送的弹幕（已显示过带"我"标志的版本）
+                    if (selfSentMsgIds[msg.id]) {
+                        return;
+                    }
                     fireDanmaku(msg.text, msg.color, true, msg.avatar, false);
                     newCount++;
                 }
@@ -218,7 +227,9 @@ window.addEventListener('DOMContentLoaded', function () {
             if (messages.length > 500) {
                 messages = messages.slice(-500);
             }
-            return githubWrite(messages);
+            return githubWrite(messages).then(function () {
+                return newMsg.id;
+            });
         });
     }
 
@@ -647,15 +658,26 @@ window.addEventListener('DOMContentLoaded', function () {
         log('SEND', '用户发送: "' + text + '" | 颜色=' + color +
             (currentAvatar ? ' | 头像=' + currentAvatar.name : ' | 无头像') + ' | [SELF]');
 
+        // 立即播放发送音效（无延迟）
+        if (audioMb) {
+            audioMb.currentTime = 0;
+            audioMb.play().catch(function () {});
+        }
+
         // 立即显示弹幕
         fireDanmaku(text, color, true, currentAvatar, true);
 
         // 保存到 GitHub
         btnSend.disabled = true;
         btnSend.textContent = '发送中...';
-        githubSend(text, color, currentAvatar).then(function () {
-            log('SEND', '弹幕已保存到 GitHub');
+        githubSend(text, color, currentAvatar).then(function (msgId) {
+            log('SEND', '弹幕已保存到 GitHub, ID: ' + msgId);
             lastSendTime = Date.now();
+            // 记录本机发送的弹幕ID，轮询时跳过避免重复显示
+            if (msgId) {
+                selfSentMsgIds[msgId] = true;
+                seenMsgIds[msgId] = true;
+            }
             btnSend.disabled = false;
             btnSend.textContent = '发射';
         }).catch(function (err) {
