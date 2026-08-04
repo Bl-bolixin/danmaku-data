@@ -317,7 +317,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
     /* ===== 点击外部关闭角色选择 ===== */
     document.addEventListener('click', function (e) {
-        if (!avatarGrid.contains(e.target) && !e.target.classList.contains('avatar-tab') && !e.target.classList.contains('selected-avatar')) {
+        if (!avatarGrid.contains(e.target) && !e.target.classList.contains('avatar-tab') && !e.target.classList.contains('selected-avatar') && !e.target.closest('.avatar-selector')) {
             avatarGrid.classList.remove('show');
         }
     });
