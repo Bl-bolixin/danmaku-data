@@ -1,0 +1,624 @@
+/* ==========================================================
+   弹幕墙页面专属样式（手机版）
+   配色：#0a0a0f 深黑 / #c8161d 朱红 / #f0c75e 金 / #aaa 灰白
+   ========================================================== */
+
+.section-danmaku {
+    position: relative;
+    min-height: 100vh;
+    padding: 100px 12px 60px;
+    overflow: hidden;
+    z-index: 1;
+    background:
+        linear-gradient(180deg, rgba(10, 10, 15, 0.93) 0%, rgba(20, 5, 5, 0.9) 50%, rgba(10, 10, 15, 0.96) 100%),
+        url("../images/弹幕.jpeg") center / cover no-repeat scroll;
+}
+
+.section-danmaku::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(200, 22, 29, 0.1) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 100%, rgba(0, 0, 0, 0.55) 0%, transparent 55%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.section-danmaku::after {
+    content: "05";
+    position: absolute;
+    top: 5%;
+    right: -3%;
+    font-size: 34vw;
+    font-weight: 900;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(240, 199, 94, 0.05);
+    pointer-events: none;
+    z-index: 0;
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    user-select: none;
+}
+
+.section-danmaku > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* ===== 标题区 ===== */
+.danmaku-header {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.danmaku-header .chapter-head-v2 {
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.chapter-head-v2 {
+    gap: 12px;
+}
+
+.chapter-num-v2 {
+    font-size: 42px;
+}
+
+.chapter-label-v2 {
+    font-size: 13px;
+    letter-spacing: 4px;
+}
+
+.danmaku-sub {
+    text-align: center;
+    color: #888;
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin-bottom: 24px;
+}
+
+/* ===== 提示 Toast ===== */
+.danmaku-toast {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    padding: 10px 20px;
+    font-size: 13px;
+    color: #f0c75e;
+    background: rgba(10, 10, 15, 0.95);
+    border: 1px solid rgba(240, 199, 94, 0.5);
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6), 0 0 12px rgba(240, 199, 94, 0.2);
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.danmaku-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.danmaku-toast .toast-icon {
+    margin-right: 4px;
+}
+
+/* ===== 弹幕舞台 ===== */
+.danmaku-stage {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    height: 540px;
+    margin: 0 auto 20px;
+    background: linear-gradient(160deg, rgba(20, 18, 22, 0.6) 0%, rgba(10, 8, 12, 0.8) 100%);
+    border: 1px solid rgba(240, 199, 94, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow:
+        inset 0 0 0 1px rgba(240, 199, 94, 0.1),
+        inset 0 0 60px rgba(0, 0, 0, 0.5),
+        0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.danmaku-stage::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(90deg, rgba(10, 10, 15, 0.9) 0%, transparent 8%),
+        linear-gradient(90deg, transparent 92%, rgba(10, 10, 15, 0.9) 100%);
+    pointer-events: none;
+    z-index: 5;
+}
+
+.danmaku-stage::after {
+    content: "DANMAKU";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: rgba(240, 199, 94, 0.08);
+    letter-spacing: 8px;
+    font-weight: 900;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+/* ===== 弹幕条目 ===== */
+.danmaku-item {
+    position: absolute;
+    white-space: nowrap;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding: 8px 22px;
+    border-radius: 26px;
+    pointer-events: none;
+    text-shadow: 0 0 8px currentColor, 0 0 16px currentColor;
+    animation-name: danmakuScroll;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    will-change: transform;
+    z-index: 3;
+    box-sizing: border-box;
+    margin: 3px 0;
+}
+
+.danmaku-item.gold {
+    color: #f0c75e;
+    background: rgba(240, 199, 94, 0.08);
+    border: 1px solid rgba(240, 199, 94, 0.3);
+}
+
+.danmaku-item.red {
+    color: #ff4444;
+    background: rgba(200, 22, 29, 0.08);
+    border: 1px solid rgba(200, 22, 29, 0.3);
+}
+
+.danmaku-item.blue {
+    color: #6ec7ff;
+    background: rgba(110, 199, 255, 0.08);
+    border: 1px solid rgba(110, 199, 255, 0.3);
+}
+
+.danmaku-item.green {
+    color: #8effc8;
+    background: rgba(142, 255, 200, 0.08);
+    border: 1px solid rgba(142, 255, 200, 0.3);
+}
+
+.danmaku-item.pink {
+    color: #ff9cf0;
+    background: rgba(255, 156, 240, 0.08);
+    border: 1px solid rgba(255, 156, 240, 0.3);
+}
+
+.danmaku-item.white {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ===== 自身弹幕特殊样式 ===== */
+.danmaku-item.self {
+    z-index: 10;
+    box-shadow:
+        0 0 12px rgba(240, 199, 94, 0.6),
+        0 0 24px rgba(240, 199, 94, 0.3),
+        inset 0 0 8px rgba(240, 199, 94, 0.15);
+    border-color: #f0c75e;
+    animation-name: danmakuScroll, danmakuSelfPulse;
+}
+
+@keyframes danmakuSelfPulse {
+    0%, 100% {
+        box-shadow:
+            0 0 12px rgba(240, 199, 94, 0.6),
+            0 0 24px rgba(240, 199, 94, 0.3),
+            inset 0 0 8px rgba(240, 199, 94, 0.15);
+    }
+    50% {
+        box-shadow:
+            0 0 20px rgba(240, 199, 94, 0.9),
+            0 0 40px rgba(240, 199, 94, 0.5),
+            inset 0 0 12px rgba(240, 199, 94, 0.25);
+    }
+}
+
+/* 自身弹幕"我"徽章 */
+.danmaku-self-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin-left: 8px;
+    font-size: 15px;
+    font-weight: 900;
+    color: #0a0a0f;
+    background: linear-gradient(135deg, #f0c75e, #d4a017);
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(240, 199, 94, 0.8);
+    text-shadow: none;
+    letter-spacing: 0;
+    flex-shrink: 0;
+}
+
+.danmaku-item.has-avatar.self .danmaku-self-badge {
+    margin-left: 10px;
+}
+
+@keyframes danmakuScroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-120vw);
+    }
+}
+
+/* ===== 控制面板 ===== */
+.danmaku-control {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px;
+    background: linear-gradient(135deg, rgba(28, 20, 22, 0.85), rgba(16, 13, 16, 0.75));
+    border: 1px solid rgba(240, 199, 94, 0.25);
+    border-radius: 14px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.control-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.control-row.second {
+    margin-top: 12px;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+/* 输入框 */
+#danmakuInput {
+    flex: 1;
+    padding: 12px 14px;
+    font-size: 16px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(240, 199, 94, 0.3);
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+#danmakuInput:focus {
+    border-color: #f0c75e;
+    box-shadow: 0 0 10px rgba(240, 199, 94, 0.3);
+}
+
+#danmakuInput::placeholder {
+    color: #666;
+}
+
+/* 发送按钮 */
+.btn-send {
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #0a0a0f;
+    background: linear-gradient(135deg, #f0c75e, #d4a017);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(240, 199, 94, 0.4);
+    white-space: nowrap;
+}
+
+.btn-send:active {
+    transform: translateY(0);
+}
+
+/* 颜色选择 */
+.color-picker {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.color-options {
+    display: flex;
+    gap: 4px;
+}
+
+.color-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.3s ease;
+}
+
+.color-dot.active {
+    border-color: #fff;
+    box-shadow: 0 0 8px currentColor;
+    transform: scale(1.15);
+}
+
+/* 速度选择 */
+.speed-picker {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.color-label {
+    font-size: 12px;
+    color: #aaa;
+    letter-spacing: 1px;
+}
+
+.speed-picker select {
+    padding: 6px 12px;
+    font-size: 13px;
+    color: #f0c75e;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(240, 199, 94, 0.3);
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+}
+
+/* 开关按钮 */
+.toggle-area {
+    display: flex;
+    align-items: center;
+}
+
+.toggle-btn {
+    padding: 6px 14px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #888;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.toggle-btn.active {
+    color: #f0c75e;
+    border-color: #f0c75e;
+    background: rgba(240, 199, 94, 0.1);
+}
+
+/* 同屏计数 */
+.count-display {
+    font-size: 13px;
+    color: #aaa;
+    letter-spacing: 1px;
+}
+
+.count-display span {
+    color: #f0c75e;
+    font-weight: bold;
+}
+
+/* ===== 预置弹幕彩蛋 ===== */
+.preset-tips {
+    max-width: 1100px;
+    margin: 16px auto 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 10px 14px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px dashed rgba(240, 199, 94, 0.3);
+    border-radius: 8px;
+}
+
+.preset-tips > span {
+    font-size: 12px;
+    color: #888;
+}
+
+.preset-btn {
+    padding: 4px 12px;
+    font-size: 12px;
+    color: #f0c75e;
+    background: rgba(240, 199, 94, 0.08);
+    border: 1px solid rgba(240, 199, 94, 0.3);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.preset-btn:active {
+    background: rgba(240, 199, 94, 0.2);
+}
+
+/* ===== 角色选择器 ===== */
+.avatar-selector {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.avatar-tabs {
+    display: flex;
+    gap: 3px;
+}
+
+.avatar-tab {
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #888;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(240, 199, 94, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.avatar-tab.active {
+    color: #f0c75e;
+    background: rgba(240, 199, 94, 0.15);
+}
+
+.avatar-grid {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 0;
+    width: 200px;
+    max-height: 240px;
+    overflow-y: auto;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    padding: 10px;
+    background: rgba(10, 10, 15, 0.98);
+    border: 1px solid rgba(240, 199, 94, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    z-index: 100;
+}
+
+.avatar-grid.show {
+    display: grid;
+}
+
+.avatar-grid::-webkit-scrollbar {
+    width: 3px;
+}
+
+.avatar-grid::-webkit-scrollbar-thumb {
+    background: rgba(240, 199, 94, 0.3);
+    border-radius: 2px;
+}
+
+.avatar-item {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.avatar-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.avatar-item.selected {
+    border-color: #f0c75e;
+    box-shadow: 0 0 8px rgba(240, 199, 94, 0.5);
+}
+
+.avatar-item .avatar-name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2px 0;
+    background: rgba(0, 0, 0, 0.85);
+    color: #f0c75e;
+    font-size: 10px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 已选择角色显示 */
+.selected-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px dashed rgba(240, 199, 94, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.selected-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.selected-avatar.has-avatar {
+    border-style: solid;
+    border-color: #f0c75e;
+    box-shadow: 0 0 8px rgba(240, 199, 94, 0.3);
+}
+
+.avatar-placeholder {
+    font-size: 9px;
+    color: #666;
+    text-align: center;
+}
+
+/* ===== 带头像的弹幕样式 ===== */
+.danmaku-item.has-avatar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 14px 4px 4px;
+    border-radius: 22px 26px 26px 22px;
+}
+
+.danmaku-item .danmaku-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid currentColor;
+    box-shadow: 0 0 8px currentColor;
+}
+
+.danmaku-item .danmaku-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.danmaku-item .danmaku-text {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
