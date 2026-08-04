@@ -49,6 +49,9 @@ window.addEventListener('DOMContentLoaded', function () {
     var avatarGrid = document.getElementById('avatarGrid');
     var selectedAvatar = document.getElementById('selectedAvatar');
 
+    // 发送音效
+    var audioMb = document.getElementById('audioMb');
+
     var MAX_ON_SCREEN = 25;
     var isOn = true;
     var currentColor = 'gold';
@@ -594,6 +597,12 @@ window.addEventListener('DOMContentLoaded', function () {
             return;
         }
         var color = currentColor;
+
+        // 立即播放发送音效（无延迟）
+        if (audioMb) {
+            audioMb.currentTime = 0;
+            audioMb.play().catch(function () {});
+        }
 
         // 立即显示弹幕
         fireDanmaku(text, color, true, currentAvatar, true);
