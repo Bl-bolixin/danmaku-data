@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>快乐是种天赋 | 弹幕墙</title>
+    <link rel="stylesheet" href="../assets/style/common.css">
+    <link rel="stylesheet" href="../assets/style/弹幕墙.css">
+</head>
+<body>
+    <!-- 页面加载动画 -->
+    <div class="loader" id="loader">
+        <div class="loader-ink">
+            <div class="ink-circle"></div>
+            <span class="loader-char">忍</span>
+        </div>
+        <p class="loader-text">快乐是种天赋</p>
+    </div>
+
+    <!-- 顶部滚动进度条 -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- 粒子背景 -->
+    <canvas class="particles" id="particles"></canvas>
+
+    <!-- 顶部导航 -->
+    <div class="nav">
+        <div class="nav-logo">
+            <span class="logo-mark">忍</span>
+            <span class="logo-text">快乐是种天赋</span>
+        </div>
+        <div class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="首页.html">首页</a>
+            <a href="核心成员.html">核心成员</a>
+            <a href="种棉花.html">种棉花</a>
+            <a href="小游戏.html">小游戏</a>
+            <a href="QQ群精华.html" class="active">弹幕墙</a>
+            <a href="招募加入.html">招募加入</a>
+        </div>
+    </div>
+
+    <!-- 弹幕墙主区域 -->
+    <div class="section-danmaku">
+        <div class="danmaku-header">
+            <div class="chapter-head-v2">
+                <span class="chapter-num-v2">05</span>
+                <span class="chapter-label-v2">DANMAKU · 弹幕墙</span>
+            </div>
+            <p class="danmaku-sub">忍界寄语 · 真情流露 · 快乐共享</p>
+        </div>
+
+        <!-- 弹幕显示区 -->
+        <div class="danmaku-stage" id="danmakuStage"></div>
+
+        <!-- 底部控制面板 -->
+        <div class="danmaku-control">
+            <div class="control-row">
+                <!-- 角色选择区 -->
+                <div class="avatar-selector">
+                    <div class="avatar-tabs">
+                        <span class="avatar-tab active" data-pool="SSR">SSR</span>
+                        <span class="avatar-tab" data-pool="UR">UR</span>
+                    </div>
+                    <div class="avatar-grid" id="avatarGrid"></div>
+                    <div class="selected-avatar" id="selectedAvatar">
+                        <span class="avatar-placeholder">选角色头像</span>
+                    </div>
+                </div>
+                <input type="text" id="danmakuInput" maxlength="30" placeholder="输入寄语">
+                <button class="btn-send" id="btnSend">发射</button>
+            </div>
+            <div class="control-row second">
+                <div class="color-picker">
+                    <span class="color-label">颜色</span>
+                    <div class="color-options">
+                        <span class="color-dot active" data-color="gold" style="background:#f0c75e"></span>
+                        <span class="color-dot" data-color="red" style="background:#ff4444"></span>
+                        <span class="color-dot" data-color="blue" style="background:#6ec7ff"></span>
+                        <span class="color-dot" data-color="green" style="background:#8effc8"></span>
+                        <span class="color-dot" data-color="pink" style="background:#ff9cf0"></span>
+                        <span class="color-dot" data-color="white" style="background:#ffffff"></span>
+                    </div>
+                </div>
+                <div class="speed-picker">
+                    <span class="color-label">速度</span>
+                    <select id="speedSelect">
+                        <option value="slow">慢速</option>
+                        <option value="normal" selected>普通</option>
+                        <option value="fast">快速</option>
+                    </select>
+                </div>
+                <div class="toggle-area">
+                    <button class="toggle-btn active" id="toggleDanmaku">弹幕 开</button>
+                </div>
+                <div class="count-display">
+                    <span>同屏 <span id="screenCount">0</span>/30</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer">
+        <div class="footer-content">
+            <p class="footer-name">快乐是种天赋</p>
+            <p class="footer-slogan">来家族免费种棉花</p>
+            <p class="footer-info">本页面为玩家自制内容 · 仅供家族招新使用 · 与官方无关</p>
+        </div>
+    </div>
+
+    <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/弹幕墙.js?v=20260804b"></script>
+</body>
+</html>
