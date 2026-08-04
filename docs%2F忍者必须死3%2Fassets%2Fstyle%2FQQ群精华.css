@@ -1,0 +1,313 @@
+/* ===== QQ群精华专属样式（3A 升级版） ===== */
+/* 配色：#0a0a0f 深黑底 · #c8161d 朱红 · #f0c75e 金 · #aaa 灰白文字 */
+
+/* ===== 章节容器：深色渐变 + 背景图遮罩 ===== */
+.section-msg {
+    position: relative;
+    z-index: 1;
+    padding: 150px 20px 130px;
+    background:
+        linear-gradient(180deg, rgba(10, 10, 15, 0.94) 0%, rgba(22, 6, 8, 0.96) 45%, rgba(10, 10, 15, 0.97) 100%),
+        radial-gradient(circle at 50% 0%, rgba(200, 22, 29, 0.14), transparent 55%),
+        url("../images/12.jpeg") center / cover no-repeat fixed;
+}
+
+.section-msg .section-inner {
+    width: min(880px, 92%);
+    position: relative;
+    z-index: 2;
+}
+
+/* ===== 章节标题：镂空描边大数字 01 ===== */
+.section-msg .chapter-head-v2 {
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 26px;
+    margin-bottom: 18px;
+}
+
+.section-msg .chapter-num-v2 {
+    font-size: 92px;
+    line-height: 0.9;
+    -webkit-text-stroke: 1.5px #c8161d;
+    filter: drop-shadow(0 0 24px rgba(200, 22, 29, 0.35));
+    letter-spacing: 4px;
+}
+
+.section-msg .chapter-label-v2 {
+    color: #f0c75e;
+    font-size: 28px;
+    letter-spacing: 10px;
+    text-shadow: 0 0 14px rgba(240, 199, 94, 0.35);
+    padding-bottom: 6px;
+}
+
+/* 区块简介文字 */
+.msg-intro {
+    color: #aaa;
+    text-align: left;
+    font-size: 14px;
+    letter-spacing: 4px;
+    margin-top: 0;
+    margin-bottom: 70px;
+    font-style: normal;
+    position: relative;
+    padding-bottom: 30px;
+}
+
+.msg-intro::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 64px;
+    height: 1px;
+    background: linear-gradient(90deg, #c8161d, transparent);
+    box-shadow: 0 0 10px rgba(200, 22, 29, 0.6);
+}
+
+/* 精华消息列表容器 */
+.msg-list {
+    width: 100%;
+}
+
+/* ===== 单条消息卡片：磨砂玻璃 + 金色细边框 + 朱红左条 ===== */
+.msg-card {
+    position: relative;
+    background: linear-gradient(135deg, rgba(28, 20, 22, 0.72) 0%, rgba(16, 13, 16, 0.62) 100%);
+    border: 1px solid rgba(240, 199, 94, 0.22);
+    border-radius: 10px;
+    padding: 26px 30px 22px 36px;
+    margin-bottom: 26px;
+    backdrop-filter: blur(14px) saturate(1.1);
+    -webkit-backdrop-filter: blur(14px) saturate(1.1);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(240, 199, 94, 0.06);
+    overflow: hidden;
+    transition: transform 0.5s cubic-bezier(.2, .7, .2, 1), opacity 0.8s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* 左侧朱红装饰条 */
+.msg-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, #c8161d 0%, rgba(200, 22, 29, 0.35) 100%);
+    box-shadow: 0 0 14px rgba(200, 22, 29, 0.55);
+    transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* 顶部金色高光线 */
+.msg-card::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(240, 199, 94, 0.45), transparent);
+}
+
+/* 卡片 hover：金色边框 + 上浮 + 发光 + 左条变金 */
+.msg-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(240, 199, 94, 0.6);
+    box-shadow: 0 20px 44px rgba(0, 0, 0, 0.5), 0 0 26px rgba(240, 199, 94, 0.18), inset 0 1px 0 rgba(240, 199, 94, 0.12);
+}
+
+.msg-card:hover::before {
+    background: linear-gradient(180deg, #f0c75e 0%, #c8161d 100%);
+    box-shadow: 0 0 22px rgba(240, 199, 94, 0.7);
+}
+
+/* 卡片头部：头像 + 名字时间 + 标签 */
+.msg-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+/* 头像：圆形金色双环边框 */
+.msg-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #c8161d, #8b0e14);
+    border: 2px solid #f0c75e;
+    color: #f0c75e;
+    font-size: 21px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0 3px rgba(240, 199, 94, 0.12), 0 0 18px rgba(200, 22, 29, 0.35);
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+.msg-card:hover .msg-avatar {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 3px rgba(240, 199, 94, 0.22), 0 0 24px rgba(200, 22, 29, 0.55);
+}
+
+/* 名字与时间区 */
+.msg-info {
+    margin-left: 14px;
+    flex: 1;
+    min-width: 0;
+}
+
+.msg-name {
+    color: #f0c75e;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.msg-time {
+    color: #888;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+}
+
+/* 身份标签 */
+.msg-tag {
+    color: #f0c75e;
+    font-size: 11px;
+    letter-spacing: 2px;
+    padding: 4px 12px;
+    border: 1px solid rgba(240, 199, 94, 0.5);
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(200, 22, 29, 0.28), rgba(200, 22, 29, 0.1));
+    flex-shrink: 0;
+    margin-left: 10px;
+    text-shadow: 0 0 8px rgba(200, 22, 29, 0.4);
+}
+
+/* 消息内容 */
+.msg-content {
+    color: #d0d0d0;
+    font-size: 15px;
+    line-height: 1.95;
+    letter-spacing: 0.6px;
+    margin-bottom: 18px;
+    padding-left: 66px;
+}
+
+/* 卡片底部：点赞评论 */
+.msg-footer {
+    display: flex;
+    align-items: center;
+    padding-left: 66px;
+}
+
+/* 精致化的点赞 / 评论按钮 */
+.msg-like,
+.msg-comment {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border: 1px solid rgba(240, 199, 94, 0.22);
+    border-radius: 20px;
+    background: rgba(240, 199, 94, 0.04);
+    color: #f0c75e;
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin-right: 14px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+}
+
+.msg-like svg,
+.msg-comment svg {
+    opacity: 0.9;
+    transition: fill 0.3s ease;
+}
+
+/* 点赞 hover：朱红填充 */
+.msg-like:hover {
+    background: rgba(200, 22, 29, 0.16);
+    border-color: rgba(200, 22, 29, 0.65);
+    color: #c8161d;
+    box-shadow: 0 0 14px rgba(200, 22, 29, 0.35);
+}
+
+/* 评论 hover：金色高亮 */
+.msg-comment:hover {
+    background: rgba(240, 199, 94, 0.12);
+    border-color: rgba(240, 199, 94, 0.6);
+    color: #f0c75e;
+    box-shadow: 0 0 14px rgba(240, 199, 94, 0.3);
+}
+
+/* ===== 响应式适配 ===== */
+@media (max-width: 640px) {
+    .section-msg {
+        padding: 120px 16px 90px;
+    }
+
+    .section-msg .chapter-head-v2 {
+        gap: 18px;
+    }
+
+    .section-msg .chapter-num-v2 {
+        font-size: 64px;
+    }
+
+    .section-msg .chapter-label-v2 {
+        font-size: 22px;
+        letter-spacing: 6px;
+    }
+
+    .msg-intro {
+        font-size: 13px;
+        letter-spacing: 3px;
+        margin-bottom: 50px;
+    }
+
+    .msg-card {
+        padding: 20px 16px 18px 24px;
+        margin-bottom: 20px;
+    }
+
+    .msg-avatar {
+        width: 42px;
+        height: 42px;
+        font-size: 17px;
+    }
+
+    .msg-content,
+    .msg-footer {
+        padding-left: 56px;
+    }
+
+    .msg-name {
+        font-size: 15px;
+    }
+
+    .msg-content {
+        font-size: 14px;
+        line-height: 1.85;
+    }
+
+    .msg-tag {
+        font-size: 10px;
+        padding: 3px 9px;
+    }
+
+    .msg-like,
+    .msg-comment {
+        padding: 5px 11px;
+        font-size: 12px;
+        margin-right: 10px;
+    }
+}
